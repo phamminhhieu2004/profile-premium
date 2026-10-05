@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-elevated: #f1f5f9;
+    --border-color: #e2e8f0;
+    --accent-cyan: #00b4d8;
+    --accent-glow: rgba(0, 180, 216, 0.2);
+  }
+
+  .dark {
+    --bg-base: #070c14;
+    --bg-surface: #0e1726;
+    --bg-elevated: #121d30;
+    --border-color: #1c2d46;
+    --accent-cyan: #00f2fe;
+    --accent-glow: rgba(0, 242, 254, 0.25);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 32px 32px;
+    background-image: radial-gradient(circle, rgba(0, 242, 254, 0.07) 1px, transparent 1px);
+  }
+
+  .bg-grid-pattern-light {
+    background-size: 32px 32px;
+    background-image: radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
+  }
+
+  .glass-card {
+    background: rgba(14, 23, 38, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(28, 45, 70, 0.8);
+  }
+
+  .glass-card-light {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+  }
+
+  .cyber-glow {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+  }
+
+  .cyber-glow-amber {
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(30, 48, 75, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.5);
+}
+
+/* Subtle Ambient Gradient Mesh */
+.ambient-glow-top {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 450px;
+  background: radial-gradient(ellipse at center, rgba(0, 242, 254, 0.12) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-amber {
+  position: absolute;
+  top: 30%;
+  right: -100px;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
