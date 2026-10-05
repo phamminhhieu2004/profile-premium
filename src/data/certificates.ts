@@ -11,8 +11,8 @@ export const CERTIFICATES: CertificateItem[] = [
     issueDate: "2024",
     credentialId: "G-GEMINI-STUDENT-2024",
     verificationUrl: "https://cloud.google.com/learn/certification",
-    image: "/assets/certificates/Gemini Certified Student.png",
-    pdfUrl: "/assets/certificates/Gemini Certified Student.pdf",
+    image: "/assets/certificates/gemini-certified-student.png",
+    pdfUrl: "/assets/certificates/gemini-certified-student.pdf",
     highlight: true,
     category: "ai",
     skillsLearned: [
@@ -37,8 +37,8 @@ export const CERTIFICATES: CertificateItem[] = [
     issueDate: "2024",
     credentialId: "G-GEMINI-EDU-2024",
     verificationUrl: "https://cloud.google.com/learn/certification",
-    image: "/assets/certificates/Gemini Certified Educator.png",
-    pdfUrl: "/assets/certificates/Gemini Certified Educator.pdf",
+    image: "/assets/certificates/gemini-certified-educator.png",
+    pdfUrl: "/assets/certificates/gemini-certified-educator.pdf",
     highlight: false,
     category: "ai",
     skillsLearned: [
@@ -62,8 +62,8 @@ export const CERTIFICATES: CertificateItem[] = [
     issueDate: "2024",
     credentialId: "G-GEMINI-FAC-2024",
     verificationUrl: "https://cloud.google.com/learn/certification",
-    image: "/assets/certificates/Gemini Certified Faculty.png",
-    pdfUrl: "/assets/certificates/Gemini Certified Faculty.pdf",
+    image: "/assets/certificates/gemini-certified-faculty.png",
+    pdfUrl: "/assets/certificates/gemini-certified-faculty.pdf",
     highlight: false,
     category: "ai",
     skillsLearned: [
