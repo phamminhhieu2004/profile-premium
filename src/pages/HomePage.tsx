@@ -42,17 +42,17 @@ export const HomePage: React.FC = () => {
   const phrases =
     language === "vi"
       ? [
-          "Kỹ sư Công nghệ Kỹ thuật Ô tô",
-          "Lập trình viên Backend Spring Boot & FastAPI",
-          "Chuyên gia Trí tuệ Nhân tạo Google Gemini Certified",
-          "Nghiên cứu Hệ thống Đo từ xa & Chẩn đoán OBD-II",
-        ]
+        "Hồ Chí Minh muôn năm",
+        "Việt Nam muôn năm",
+        "Hoàng Sa - Trường Sa là của Việt Nam",
+        "Trung Quốc tuổi lồn",
+      ]
       : [
-          "Automotive Engineering Specialist",
-          "Spring Boot & FastAPI Backend Developer",
-          "Google Gemini Certified AI Professional",
-          "OBD-II Vehicle Telemetry & Diagnostics Researcher",
-        ];
+        "Long live Ho Chi Minh",
+        "Long live Viet Nam ",
+        "Hoang Sa and Truong Sa belong to Vietnam.",
+        "China can go fuck itself.",
+      ];
 
   useEffect(() => {
     const currentPhrase = phrases[typingIndex % phrases.length];
@@ -190,9 +190,12 @@ export const HomePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-cyan-500/30 bg-slate-100 dark:bg-dark-card p-3 shadow-2xl shadow-cyan-950/40">
                 <div className="relative rounded-xl overflow-hidden aspect-square bg-slate-900">
                   <img
-                    src="/assets/picture 2.jpg"
+                    src="/assets/avatar.png"
                     alt={PROFILE.name}
                     className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/assets/avatar.jpg";
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
@@ -319,7 +322,7 @@ export const HomePage: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-4 flex flex-wrap items-center gap-3 sm:gap-4">
                 <button
                   onClick={() => setSelectedCert(geminiCert)}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-bold text-xs uppercase tracking-wider bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-md shadow-cyan-500/20 transition-all hover:scale-105"
@@ -327,6 +330,19 @@ export const HomePage: React.FC = () => {
                   <Award className="w-4 h-4" />
                   <span>{t("certificates.view")}</span>
                 </button>
+
+                {geminiCert.pdfUrl && (
+                  <a
+                    href={geminiCert.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-mono text-xs text-rose-300 hover:text-white bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-all hover:scale-105"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-rose-400" />
+                    <span>{language === "vi" ? "Xem file PDF gốc" : "View Official PDF"}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
 
                 <Link
                   to="/certificates"
@@ -347,7 +363,7 @@ export const HomePage: React.FC = () => {
                 <img
                   src={geminiCert.image}
                   alt={geminiCert.title[language]}
-                  className="w-full h-auto rounded-xl object-contain"
+                  className="w-full h-auto max-h-[300px] mx-auto rounded-xl object-contain bg-white/5 p-2"
                 />
                 <div className="absolute inset-0 bg-cyan-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-xs rounded-xl">
                   <div className="px-4 py-2 rounded-xl bg-slate-900/90 text-cyan-300 text-xs font-mono font-bold flex items-center gap-2 border border-cyan-500/50 shadow-lg">
@@ -467,8 +483,8 @@ export const HomePage: React.FC = () => {
                         ? "Đã hoàn thành"
                         : "Completed"
                       : language === "vi"
-                      ? "Đang phát triển"
-                      : "In Progress"}
+                        ? "Đang phát triển"
+                        : "In Progress"}
                   </span>
                 </div>
                 <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white leading-snug">

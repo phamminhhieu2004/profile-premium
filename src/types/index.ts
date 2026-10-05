@@ -85,6 +85,7 @@ export interface CertificateItem {
   credentialId: string;
   verificationUrl?: string;
   image: string;
+  pdfUrl?: string;
   highlight?: boolean;
   category: "ai" | "automotive" | "software";
   skillsLearned: string[];

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CertificateItem } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
-import { X, ExternalLink, Award, CheckCircle, Calendar, ShieldCheck } from "lucide-react";
+import { X, ExternalLink, Award, CheckCircle, Calendar, ShieldCheck, FileText, Download, Image as ImageIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CertificateModalProps {
@@ -11,8 +11,21 @@ interface CertificateModalProps {
 
 export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate, onClose }) => {
   const { language, t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<"pdf" | "image">("pdf");
+
+  useEffect(() => {
+    if (certificate?.pdfUrl) {
+      setActiveTab("pdf");
+    } else {
+      setActiveTab("image");
+    }
+  }, [certificate]);
 
   if (!certificate) return null;
+
+  const hasPdf = Boolean(certificate.pdfUrl || certificate.image.endsWith(".pdf"));
+  const pdfSrc = certificate.pdfUrl || (certificate.image.endsWith(".pdf") ? certificate.image : undefined);
+  const imgSrc = certificate.image.endsWith(".pdf") ? certificate.image.replace(/\.pdf$/i, ".png") : certificate.image;
 
   return (
     <AnimatePresence>
@@ -57,13 +70,81 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
           </div>
 
           <div className="p-6 max-h-[80vh] overflow-y-auto space-y-6">
-            <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 flex items-center justify-center group">
-              <img
-                src={certificate.image}
-                alt={certificate.title[language]}
-                className="w-full h-auto max-h-[460px] object-contain transition-transform duration-300 group-hover:scale-[1.01]"
-              />
-            </div>
+            {/* View Mode Tabs if both PDF and Image badge exist */}
+            {hasPdf && imgSrc && (
+              <div className="flex items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveTab("pdf")}
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all ${
+                      activeTab === "pdf"
+                        ? "bg-rose-500/20 text-rose-300 border border-rose-500/40 shadow-sm"
+                        : "bg-slate-800/60 text-slate-400 hover:text-slate-200 border border-transparent"
+                    }`}
+                  >
+                    <FileText className="w-3.5 h-3.5 text-rose-400" />
+                    <span>{language === "vi" ? "Tài liệu PDF gốc" : "Official PDF"}</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("image")}
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all ${
+                      activeTab === "image"
+                        ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm"
+                        : "bg-slate-800/60 text-slate-400 hover:text-slate-200 border border-transparent"
+                    }`}
+                  >
+                    <ImageIcon className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>{language === "vi" ? "Huy hiệu (Badge)" : "Badge"}</span>
+                  </button>
+                </div>
+
+                {pdfSrc && (
+                  <a
+                    href={pdfSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-rose-300 hover:text-white bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-all"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">{language === "vi" ? "Mở / Tải PDF" : "Open PDF"}</span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            {/* Document / Media Display */}
+            {hasPdf && activeTab === "pdf" && pdfSrc ? (
+              <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 flex flex-col">
+                <iframe
+                  src={`${pdfSrc}#toolbar=0&navpanes=0`}
+                  title={certificate.title[language]}
+                  className="w-full h-[460px] sm:h-[520px] rounded-t-xl bg-slate-950 border-0"
+                />
+                <div className="flex items-center justify-between p-3 bg-slate-950 border-t border-slate-800 text-xs font-mono">
+                  <div className="flex items-center gap-2 text-slate-400">
+                    <FileText className="w-4 h-4 text-rose-400 shrink-0" />
+                    <span className="truncate max-w-[200px] sm:max-w-md">{certificate.title[language]}.pdf</span>
+                  </div>
+                  <a
+                    href={pdfSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    <span>{language === "vi" ? "Toàn màn hình" : "Fullscreen"}</span>
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950/80 p-4 flex items-center justify-center group">
+                <img
+                  src={imgSrc}
+                  alt={certificate.title[language]}
+                  className="w-auto h-auto max-h-[380px] object-contain transition-transform duration-300 group-hover:scale-[1.01] rounded-lg"
+                />
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
               <div className="space-y-1">
@@ -114,7 +195,19 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
             )}
           </div>
 
-          <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-800 dark:border-dark-border bg-slate-950/50">
+          <div className="flex flex-wrap items-center justify-end gap-3 px-6 py-4 border-t border-slate-800 dark:border-dark-border bg-slate-950/50">
+            {pdfSrc && (
+              <a
+                href={pdfSrc}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 transition-colors font-mono"
+              >
+                <FileText className="w-4 h-4 text-rose-400" />
+                <span>{language === "vi" ? "Mở file PDF gốc" : "Open Official PDF"}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
             {certificate.verificationUrl && (
               <a
                 href={certificate.verificationUrl}

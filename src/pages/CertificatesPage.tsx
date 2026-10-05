@@ -13,6 +13,7 @@ import {
   CheckCircle,
   Eye,
   Filter,
+  FileText,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -115,6 +116,18 @@ export const CertificatesPage: React.FC = () => {
                   <Eye className="w-4 h-4" />
                   <span>{t("certificates.view")}</span>
                 </button>
+                {geminiCert.pdfUrl && (
+                  <a
+                    href={geminiCert.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-heading font-bold text-xs uppercase tracking-wider bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 shadow-lg shadow-rose-950/30 hover:scale-105 transition-all"
+                  >
+                    <FileText className="w-4 h-4 text-rose-400" />
+                    <span>{language === "vi" ? "Xem file PDF gốc" : "View Official PDF"}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
                 {geminiCert.verificationUrl && (
                   <a
                     href={geminiCert.verificationUrl}
@@ -138,7 +151,7 @@ export const CertificatesPage: React.FC = () => {
                 <img
                   src={geminiCert.image}
                   alt={geminiCert.title[language]}
-                  className="w-full h-auto rounded-xl object-contain"
+                  className="w-full h-auto max-h-[300px] mx-auto rounded-xl object-contain bg-white/5 p-2"
                 />
                 <div className="absolute inset-0 bg-cyan-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-xl">
                   <div className="px-4 py-2 rounded-xl bg-slate-900/90 text-cyan-300 text-xs font-mono font-bold flex items-center gap-2 border border-cyan-500/50 shadow-lg">
@@ -183,75 +196,113 @@ export const CertificatesPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryCerts.map((cert) => (
-              <div
-                key={cert.id}
-                className="rounded-2xl overflow-hidden bg-slate-100 dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-md flex flex-col justify-between hover:border-cyan-500/40 hover:-translate-y-1 transition-all group"
+          {galleryCerts.length === 0 ? (
+            <div className="text-center py-16 px-4 rounded-2xl bg-slate-100/50 dark:bg-dark-card/50 border border-slate-200 dark:border-dark-border">
+              <Award className="w-10 h-10 text-slate-400 mx-auto mb-3 opacity-60" />
+              <p className="text-sm font-mono text-slate-500">
+                {language === "vi"
+                  ? "Chưa có chứng chỉ trong danh mục này."
+                  : "No certificates found in this category."}
+              </p>
+              <button
+                onClick={() => setSelectedFilter("all")}
+                className="mt-4 px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition-colors"
               >
-                <div>
-                  <div
-                    onClick={() => setSelectedCert(cert)}
-                    className="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer"
-                  >
-                    <img
-                      src={cert.image}
-                      alt={cert.title[language]}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-cyan-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                      <span className="px-3 py-1.5 rounded-lg bg-slate-900/90 text-cyan-300 text-xs font-mono font-bold flex items-center gap-1.5 border border-cyan-500/40">
-                        <Eye className="w-3.5 h-3.5" />
-                        {t("certificates.view")}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-5 space-y-3">
-                    <div className="flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-cyan-500 font-semibold">{cert.issuer}</span>
-                      <span className="text-slate-500">{cert.issueDate}</span>
-                    </div>
-
-                    <h3 className="font-heading font-bold text-base text-slate-900 dark:text-white leading-snug">
-                      {cert.title[language]}
-                    </h3>
-
-                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
-                      {cert.description[language]}
-                    </p>
-
-                    <div className="pt-2 text-[11px] font-mono text-slate-500 flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="truncate">{cert.credentialId}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-200 dark:border-dark-border/60 mt-2">
-                  <button
-                    onClick={() => setSelectedCert(cert)}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-cyan-500 hover:text-cyan-400"
-                  >
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>{t("certificates.view")}</span>
-                  </button>
-
-                  {cert.verificationUrl && (
-                    <a
-                      href={cert.verificationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-mono text-slate-400 hover:text-slate-200 inline-flex items-center gap-1"
+                {language === "vi" ? "Xem tất cả chứng chỉ" : "View all certificates"}
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galleryCerts.map((cert) => (
+                <div
+                  key={cert.id}
+                  className="rounded-2xl overflow-hidden bg-slate-100 dark:bg-dark-card border border-slate-200 dark:border-dark-border shadow-md flex flex-col justify-between hover:border-cyan-500/40 hover:-translate-y-1 transition-all group"
+                >
+                  <div>
+                    <div
+                      onClick={() => setSelectedCert(cert)}
+                      className="relative aspect-video overflow-hidden bg-slate-950 cursor-pointer"
                     >
-                      <span>{t("certificates.verify")}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                      <img
+                        src={cert.image}
+                        alt={cert.title[language]}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {cert.pdfUrl && (
+                        <span className="absolute top-2.5 right-2.5 z-10 px-2 py-0.5 rounded-md font-mono text-[10px] font-bold bg-rose-950/90 text-rose-400 border border-rose-500/40 backdrop-blur-xs flex items-center gap-1 shadow-md">
+                          <FileText className="w-3 h-3 text-rose-400" />
+                          PDF
+                        </span>
+                      )}
+                      <div className="absolute inset-0 bg-cyan-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                        <span className="px-3 py-1.5 rounded-lg bg-slate-900/90 text-cyan-300 text-xs font-mono font-bold flex items-center gap-1.5 border border-cyan-500/40">
+                          <Eye className="w-3.5 h-3.5" />
+                          {t("certificates.view")}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-5 space-y-3">
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-cyan-500 font-semibold">{cert.issuer}</span>
+                        <span className="text-slate-500">{cert.issueDate}</span>
+                      </div>
+
+                      <h3 className="font-heading font-bold text-base text-slate-900 dark:text-white leading-snug">
+                        {cert.title[language]}
+                      </h3>
+
+                      <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                        {cert.description[language]}
+                      </p>
+
+                      <div className="pt-2 text-[11px] font-mono text-slate-500 flex items-center gap-1">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span className="truncate">{cert.credentialId}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-200 dark:border-dark-border/60 mt-2">
+                    <button
+                      onClick={() => setSelectedCert(cert)}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-cyan-500 hover:text-cyan-400"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>{t("certificates.view")}</span>
+                    </button>
+
+                    <div className="flex items-center gap-3">
+                      {cert.pdfUrl && (
+                        <a
+                          href={cert.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-rose-400 hover:text-rose-300 inline-flex items-center gap-1"
+                          title={language === "vi" ? "Mở file PDF gốc" : "Open PDF"}
+                        >
+                          <FileText className="w-3 h-3" />
+                          <span>PDF</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                      {cert.verificationUrl && (
+                        <a
+                          href={cert.verificationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-mono text-slate-400 hover:text-slate-200 inline-flex items-center gap-1"
+                        >
+                          <span>{t("certificates.verify")}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

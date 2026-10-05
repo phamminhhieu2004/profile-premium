@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Wordmark & Logo */}
         <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-          <div className="w-10 h-10 rounded-xl overflow-hidden border border-cyan-500/40 bg-slate-900 dark:bg-dark-surface p-1 flex items-center justify-center shadow-md shadow-cyan-950/30 group-hover:border-cyan-400 group-hover:scale-105 transition-all">
+          <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-300 dark:border-slate-300/80 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 p-1 flex items-center justify-center shadow-md shadow-slate-400/20 group-hover:border-cyan-400 group-hover:scale-105 transition-all">
             <img
               src="/assets/image.png"
               alt="Pham Minh Hieu Brand"

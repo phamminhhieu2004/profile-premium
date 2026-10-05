@@ -27,8 +27,8 @@ export const SOCIAL_LINKS: SocialLinkItem[] = [
   },
   {
     platform: "Instagram",
-    url: "https://www.instagram.com/phamminhhieu2004",
-    username: "@phamminhhieu2004",
+    url: "https://www.instagram.com/_.pmh.2004._/",
+    username: "@_.pmh.2004._",
     icon: "Instagram",
     color: "#e1306c",
     ariaLabel: "Theo dõi trang Instagram cá nhân của Phạm Minh Hiếu",

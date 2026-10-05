@@ -15,8 +15,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     "nav.cv": "Tải CV",
 
     // Hero Section
-    "hero.eyebrow": "Sẵn sàng đón nhận cơ hội mới & Hợp tác kỹ thuật",
-    "hero.greeting": "Xin chào, tôi là",
+    "hero.eyebrow": "K21 - Trường Đại học Công nghệ thông tin và Truyền thông Thái Nguyên",
+    "hero.greeting": "Chào các bro, tôi là",
     "hero.name": "Phạm Minh Hiếu",
     "hero.domain.auto": "Công nghệ Kỹ thuật Ô tô",
     "hero.domain.software": "Lập trình Phần mềm Backend & AI",
@@ -31,7 +31,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // About Section
     "about.title": "Về Tôi",
     "about.eyebrow": "about.json",
-    "about.subtitle": "Kỹ sư liên ngành hội tụ niềm đam mê cơ điện tử ô tô và năng lực xây dựng hệ thống phần mềm quy mô lớn.",
+    "about.subtitle": "Sinh viên ngành công nghệ ô tô nhưng đam mê code và nhạc.",
     "about.info.personal": "Thông tin cá nhân",
     "about.info.name": "Họ và tên",
     "about.info.birth": "Năm sinh",
@@ -51,9 +51,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // Skills Section
     "skills.title": "Kỹ Năng & Năng Lực Công Nghệ",
     "skills.eyebrow": "skills.matrix",
-    "skills.subtitle": "Hệ sinh thái kỹ năng trải rộng từ cơ cấu chấp hành ô tô, chẩn đoán điện tử đến vi phân phối backend và học sâu AI.",
+    "skills.subtitle": "Đối với Hiếu thì cái gì cũng cần phải biết một ít nên đừng đặt kì vọng nhiều về kỹ năng của Hiếu",
     "skills.filter.all": "Tất cả",
-    "skills.filter.automotive": "Kỹ thuật Ô tô",
+    "skills.filter.automotive": "Công nghệ Ô tô",
     "skills.filter.backend": "Backend & Cloud",
     "skills.filter.ai": "Trí tuệ nhân tạo (AI)",
     "skills.filter.frontend": "Frontend & UI/UX",
@@ -76,7 +76,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // Projects Section
     "projects.title": "Dự Án Tiêu Biểu",
     "projects.eyebrow": "projects.repository",
-    "projects.subtitle": "Các giải pháp thực tế kết hợp kỹ thuật ô tô, viễn thông đo từ xa và kiến trúc phần mềm phân tán.",
+    "projects.subtitle": "Toàn mấy cái project cơ bản thôi các bro à",
     "projects.filter.all": "Tất cả dự án",
     "projects.filter.software": "Phần mềm",
     "projects.filter.automotive": "Kỹ thuật Ô tô",
@@ -141,7 +141,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // AI Chatbot
     "chatbot.title": "Trợ Lý AI PMH",
     "chatbot.subtitle": "Hỗ trợ bởi Google Gemini AI",
-    "chatbot.welcome": "Xin chào! Tôi là trợ lý AI trên portfolio của Phạm Minh Hiếu. Bạn có thể hỏi tôi về hồ sơ, kỹ năng, dự án, chứng chỉ Google Gemini hoặc cách liên hệ với Hiếu!",
+    "chatbot.welcome": "Xin chào! Tôi là trợ lý AI của Hiếu. Bạn có thể hỏi tôi về hồ sơ, kỹ năng, dự án, chứng chỉ Google Gemini hoặc cách liên hệ với Hiếu!",
     "chatbot.placeholder": "Nhập câu hỏi của bạn (Enter để gửi)...",
     "chatbot.clear": "Xóa đoạn hội thoại",
     "chatbot.typing": "Trợ lý AI đang suy nghĩ...",

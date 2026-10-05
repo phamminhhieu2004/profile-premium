@@ -5,17 +5,17 @@ export const PROFILE: ProfileData = {
   birthYear: 2004,
   location: "Thái Nguyên, Việt Nam",
   phone: "0989 770 905",
-  email: "dtc225100025@ictu.edu.vn",
+  email: "phamminhhieu18022004@gmail.com",
   telegram: "@pmh_2004",
   telegramUrl: "https://t.me/pmh_2004",
   github: "https://github.com/phamminhhieu2004",
   facebook: "https://www.facebook.com/goodboy.real.minhhieu",
   tiktok: "https://www.tiktok.com/@goodboy.real_2004",
-  instagram: "https://www.instagram.com/phamminhhieu2004",
+  instagram: "https://www.instagram.com/_.pmh.2004._",
   website: "https://phamminhhieu.site",
   cvUrlTxt: "/Pham_Minh_Hieu_CV.txt",
   mainSpecialty: {
-    vi: "Công nghệ Kỹ thuật Ô tô × Lập trình Phần mềm",
+    vi: "Công nghệ Ô tô × Lập trình Phần mềm",
     en: "Automotive Technology × Software Engineering",
   },
   tagline: {
@@ -27,7 +27,7 @@ export const PROFILE: ProfileData = {
     en: "Bridging the worlds of Automotive Engineering and Modern Software Development. Building scalable backend architectures with Spring Boot, FastAPI, and Node.js on a strong foundation of vehicle electronics, OBD diagnostics, and EV/hybrid technology.",
   },
   bioFull: {
-    vi: "Tôi là Phạm Minh Hiếu, sinh năm 2004 tại Thái Nguyên, hiện đang theo học chuyên ngành Công nghệ Kỹ thuật Ô tô tại Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU). Với đam mê cháy bỏng trong cả hai lĩnh vực phần cứng cơ điện tử và phần mềm hiện đại, tôi định hướng phát triển bản thân thành một kỹ sư liên ngành có khả năng thiết kế hệ thống nhúng, viễn thông ô tô (telematics), chẩn đoán thông minh ứng dụng AI và xây dựng hệ sinh thái backend hiệu năng cao.",
+    vi: "Tôi là Phạm Minh Hiếu, sinh năm 2004 tại Thái Nguyên, hiện đang theo học chuyên ngành Công nghệ Ô tô tại Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU). Với đam mê cháy bỏng trong cả hai lĩnh vực phần cứng cơ điện tử và phần mềm hiện đại, tôi định hướng phát triển bản thân thành một kỹ sư liên ngành có khả năng thiết kế hệ thống nhúng, viễn thông ô tô (telematics), chẩn đoán thông minh ứng dụng AI và xây dựng hệ sinh thái backend hiệu năng cao.",
     en: "I am Pham Minh Hieu, born in 2004 in Thai Nguyen, currently pursuing Automotive Engineering Technology at the University of Information and Communication Technology (ICTU). Driven by passion for both electromechanical vehicle hardware and modern software architectures, I specialize in bridging telematics, intelligent AI-driven diagnostics, and high-performance backend microservices.",
   },
   education: [
@@ -38,7 +38,7 @@ export const PROFILE: ProfileData = {
         en: "University of Information and Communication Technology (ICTU)",
       },
       major: {
-        vi: "Công nghệ Kỹ thuật Ô tô",
+        vi: "Công nghệ Ô tô",
         en: "Automotive Engineering Technology",
       },
       detail: {

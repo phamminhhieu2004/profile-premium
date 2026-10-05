@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl overflow-hidden border border-cyan-500/40 bg-slate-900 p-1 flex items-center justify-center shadow-md">
+              <div className="w-9 h-9 rounded-xl overflow-hidden border border-slate-300 dark:border-slate-300/80 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 p-1 flex items-center justify-center shadow-md">
                 <img src="/assets/image.png" alt="Pham Minh Hieu" className="w-full h-full object-contain" />
               </div>
               <span className="font-heading font-extrabold text-xl text-slate-900 dark:text-white">

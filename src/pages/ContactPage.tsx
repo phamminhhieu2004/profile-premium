@@ -148,7 +148,7 @@ export const ContactPage: React.FC = () => {
       setFormData({ name: "", email: "", subject: "", message: "" });
       addToast(
         lang === "vi"
-          ? "Tin nhắn đã gửi thành công! Phạm Minh Hiếu sẽ phản hồi sớm nhất."
+          ? "Tin nhắn đã gửi thành công! Tôi sẽ phản hồi sớm nhất."
           : "Message transmitted successfully! I will respond promptly.",
         "success"
       );
@@ -344,11 +344,10 @@ export const ContactPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder={lang === "vi" ? "Nguyễn Văn A" : "Alex Turner"}
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${
-                        errors.name
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${errors.name
                           ? "border-red-500 focus:border-red-500"
                           : "border-white/10 focus:border-cyan-500"
-                      }`}
+                        }`}
                     />
                     {errors.name && (
                       <p className="mt-1 text-xs text-red-400">{errors.name}</p>
@@ -365,11 +364,10 @@ export const ContactPage: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="alex@domain.com"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${
-                        errors.email
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${errors.email
                           ? "border-red-500 focus:border-red-500"
                           : "border-white/10 focus:border-cyan-500"
-                      }`}
+                        }`}
                     />
                     {errors.email && (
                       <p className="mt-1 text-xs text-red-400">{errors.email}</p>
@@ -391,11 +389,10 @@ export const ContactPage: React.FC = () => {
                         ? "Hợp tác dự án chẩn đoán CAN Bus / Spring Boot..."
                         : "Technical collaboration / OBD-II Telematics project..."
                     }
-                    className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${
-                      errors.subject
+                    className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors ${errors.subject
                         ? "border-red-500 focus:border-red-500"
                         : "border-white/10 focus:border-cyan-500"
-                    }`}
+                      }`}
                   />
                   {errors.subject && (
                     <p className="mt-1 text-xs text-red-400">{errors.subject}</p>
@@ -416,11 +413,10 @@ export const ContactPage: React.FC = () => {
                         ? "Mô tả chi tiết nội dung bạn muốn trao đổi hoặc hợp tác..."
                         : "Describe the scope, objectives, or questions you would like to discuss..."
                     }
-                    className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors resize-y ${
-                      errors.message
+                    className={`w-full px-4 py-3 rounded-xl bg-slate-950/80 border text-white text-sm focus:outline-none transition-colors resize-y ${errors.message
                         ? "border-red-500 focus:border-red-500"
                         : "border-white/10 focus:border-cyan-500"
-                    }`}
+                      }`}
                   />
                   {errors.message && (
                     <p className="mt-1 text-xs text-red-400">{errors.message}</p>
